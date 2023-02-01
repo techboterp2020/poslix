@@ -112,7 +112,7 @@
                         <b>Prepared By :  <span t-field="doc.user_id"/></b>
                     </td>
                     <td style="float:right;width:200px;text-align:center;border-top: 2px solid black;border-bottom: hidden;border-right: hidden;border-left:hidden ;">
-                        <b>Signature <span t-field="doc.prepared_signed_by_id"/></b>
+                        <b>Signature</b>
                     </td>
                 </tr>
             </table>
