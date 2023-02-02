@@ -13,7 +13,9 @@
             </xpath>
 
             <xpath expr="//table/tbody/t[@t-foreach='o.order_line']" position="inside">
+                <t t-if="not line.product_id.discount_product">
                 <t t-set="sl_no" t-value="sl_no+1"/>
+                </t>
             </xpath>
 
             <xpath expr="//table/tbody/t[@t-foreach='o.order_line']/tr/t/td[@id='product']" position="before">
@@ -23,16 +25,17 @@
             </xpath>
 
             <xpath expr="//div[@id='total']" position="after">
-                <table width="100%"  style="margin-top:130px;border-style:hidden;">
-                <tr >
-                    <td style="float:left;width:25%;text-align:center;">
-                        <b>Prepared By :  <span t-field="o.user_id"/></b>
-                    </td>
-                    <td style="float:right;width:200px;text-align:center;border-top: 2px solid black;border-bottom: hidden;border-right: hidden;border-left:hidden;background-color:white">
-                        <b>Signature</b>
-                    </td>
-                </tr>
-            </table>
+                <table width="100%" style="border-style:hidden;padding-top:80px">
+                    <tr>
+                        <td style="float:left;width:200px;text-align:center;border-top: 1px dotted black;border-bottom: hidden;border-right: hidden;border-left:hidden;background-color:white">
+                            Receiver's Signature
+                        </td>
+<!--                        <td style="float:right;width:25%;text-align:center;border: hidden;background-color:white">-->
+<!--                            Prepared By :-->
+<!--                                <span t-field="o.user_id"/>-->
+<!--                        </td>-->
+                    </tr>
+                </table>
             </xpath>
         </template>
     </data>

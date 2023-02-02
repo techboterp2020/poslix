@@ -9,6 +9,7 @@ class SaleOrderLine(models.Model):
     warranty_end_date = fields.Date(string='Warranty End Date')
 
 
+
 class SaleOrderCustom(models.Model):
     _inherit = 'sale.order'
 

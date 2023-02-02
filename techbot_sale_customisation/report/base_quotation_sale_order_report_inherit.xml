@@ -15,7 +15,9 @@
             </xpath>
 
             <xpath expr="//table/tbody/t[@t-foreach='lines_to_report']" position="inside">
+                <t t-if="not line.product_id.discount_product">
                 <t t-set="sl_no" t-value="sl_no+1"/>
+                </t>
             </xpath>
 
             <xpath expr="//table/tbody/t[@t-foreach='lines_to_report']/tr/t/td[@name='td_name']" position="before">
@@ -26,23 +28,25 @@
 
             <xpath expr="//table/tbody/t[@t-foreach='lines_to_report']/tr/t/td[@name='td_name']" position="before">
                 <td name="td_image" style="width:70px; height:70px;">
-                    <span t-field="line.product_id.image_1920" t-options='{"widget": "image"}'/>
+<!--                    <img t-if="line.product_id.image_1920" t-att-src="image_data_uri(line.product_id.image_1920)"/>-->
+                    <span t-if="line.product_id.image_1920" t-field="line.product_id.image_1920" t-options='{"widget": "image"}'/>
                 </td>
             </xpath>
 
-            <xpath expr="//div[@name='signature']" position="after">
-                <table width="100%" style="margin-top:130px;border-style:hidden;">
+            <xpath expr="//p[@id='fiscal_position_remark']" position="after">
+                <div class="col-12" style="padding-top:80px">
+                <table width="100%" style="border-style:hidden;">
                     <tr>
-                        <td style="float:left;width:25%;text-align:center;border: hidden">
-                            <b>Prepared By :
-                                <span t-field="doc.user_id"/>
-                            </b>
+                        <td style="float:left;width:200px;text-align:center;border-top: 1px dotted black;border-bottom: hidden;border-right: hidden;border-left:hidden;background-color:white">
+                            Receiver's Signature
                         </td>
-                        <td style="float:right;width:200px;text-align:center;border-top: 2px solid black;border-bottom: hidden;border-right: hidden;border-left:hidden;background-color:white">
-                            <b>Signature</b>
-                        </td>
+<!--                        <td style="float:right;width:25%;text-align:center;border: hidden">-->
+<!--                            Prepared By :-->
+<!--                                <span t-field="doc.user_id"/>-->
+<!--                        </td>-->
                     </tr>
                 </table>
+                </div>
             </xpath>
         </template>
     </data>
