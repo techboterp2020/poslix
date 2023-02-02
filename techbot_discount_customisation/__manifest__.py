@@ -5,7 +5,7 @@
     'summary': """""",
     'category': 'Extra Tools',
     'author': 'Techbot',
-    'depends': ['base','stock','sale','purchase','sale_management'],
+    'depends': ['base','stock','sale','purchase','sale_management','account'],
     'data': [
         'views/product_template.xml',
         'report/tax_total_inherited.xml',

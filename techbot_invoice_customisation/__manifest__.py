@@ -1,10 +1,10 @@
 {
-    'name': 'Invoice customisations',
+    'name': 'Invoice Customisation',
     'version': '16.0.1.0.0',
     'author': 'Techbot',
     'category': 'Invoice',
     'license': 'LGPL-3',
-    'description': """ This module manage invoice customisations...""",
+    'description': """ This module manage invoice Customisation...""",
     'depends': ['base', 'account', 'hr','techbot_sale_customisation'],
     'data': [
         'views/invoice_customisation_view.xml',
