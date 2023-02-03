@@ -1,12 +1,27 @@
 from odoo import api, fields, models
-from datetime import datetime
-
+from datetime import datetime, timedelta
+from dateutil.relativedelta import relativedelta
 
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     warranty = fields.Boolean(string='Warranty')
-    warranty_end_date = fields.Date(string='Warranty End Date')
+    warranty_end_date = fields.Date(string='Warranty End Date',compute='compute_warranty')
+
+    warranty_calc = fields.Integer(string='Warranty')
+    warranty_period =fields.Selection([('day', 'Day(s)'), ('month', 'Month(s)'),('year', 'Year(s)')], default='day',
+        string='Warranty Period')
+
+    @api.onchange('warranty_calc','warranty_period')
+    def compute_warranty(self):
+        today = fields.datetime.now().date()
+        for rec in self:
+            if rec.warranty_period == 'day':
+                rec.warranty_end_date = today + timedelta(days=rec.warranty_calc)
+            if rec.warranty_period == 'month':
+                rec.warranty_end_date = today + relativedelta(months=+rec.warranty_calc)
+            if rec.warranty_period == 'year':
+                rec.warranty_end_date = today + relativedelta(years=rec.warranty_calc)
 
 
 
