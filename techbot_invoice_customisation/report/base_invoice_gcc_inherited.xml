@@ -41,19 +41,20 @@
                 <span t-esc="sl_no"/>
             </td>
         </xpath>
-                    <xpath expr="//p[@name='incoterm']" position="after">
-                <div class="col-12" style="padding-top:80px">
-                <table width="100%" style="border-style:hidden;">
-                    <tr>
-                        <td style="float:left;width:200px;text-align:center;border-top: 1px dotted black;border-bottom: hidden;border-right: hidden;border-left:hidden;background-color:white">
-                            Receiver's Signature
-                        </td>
-<!--                        <td style="float:right;width:25%;text-align:center;border: hidden">-->
-<!--                            Prepared By :-->
-<!--                                <span t-field="o.user_id"/>-->
-<!--                        </td>-->
-                    </tr>
-                </table>
+
+        <xpath expr="//p[@name='incoterm']" position="after">
+                <div class="col-12" style="padding-top:150px;">
+                    <table width="100%" style="border-style:hidden;">
+                        <tr>
+                            <td style="float:left;width:200px;text-align:center;border-top: 1px dotted black;border-bottom: hidden;border-right: hidden;border-left:hidden;background-color:white;font-size:12px">
+                                Receiver's Signature
+                            </td>
+                            <td style="float:right;width:75%;text-align:center;border: hidden;font-size:12px;padding-left:240px">
+                                For
+                                <span t-field="o.company_id"/>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </xpath>
 

@@ -5,7 +5,7 @@
     'category': 'Sale',
     'license': 'LGPL-3',
     'description': """ This module manage Sale Customisation...""",
-    'depends': ['base', 'sale_management', 'hr','stock','techbot_discount_customisation'],
+    'depends': ['base', 'sale_management', 'hr','stock','techbot_discount_customisation','report_qweb_element_page_visibility'],
     'data': [
         'views/sale_customisation_view.xml',
         'views/product_template.xml',

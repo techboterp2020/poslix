@@ -10,7 +10,6 @@ class StockPickingValidate(models.Model):
         for rec in self.move_ids_without_package:
             picking = self.env['stock.move'].search([('product_id', '=', rec.product_id.id), ('state', '!=', 'done'), ('picking_type_id', '=', self.env.ref('stock.picking_type_out').id)])
             if len(picking) > 1 and self.picking_type_id.code == 'outgoing':
-                rec.picking_id.button_validate()
                 return {
                     'name': 'Warning!!!!!!',
                     'type': 'ir.actions.act_window',
@@ -19,7 +18,10 @@ class StockPickingValidate(models.Model):
                     'target': 'new'
                 }
             else:
+                rec.picking_id.action_set_quantities_to_reservation()
                 rec.picking_id.button_validate()
+
+
 
 
 
