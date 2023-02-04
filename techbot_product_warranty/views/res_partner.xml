@@ -8,8 +8,8 @@
         <xpath expr="//page[last()]" position="after">
                 <page name="warranty" string="Product Warranty">
                     <field name="product_warranty_ids">
-                        <tree>
-                        <field name="product_id"/>
+                        <tree create="false">
+                        <field name="product_id" edit="false"/>
                         <field name="order_no"/>
                         <field name="start_date"/>
                         <field name="end_date"/>

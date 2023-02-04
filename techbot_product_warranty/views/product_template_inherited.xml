@@ -7,8 +7,8 @@
       <field name="arch" type="xml">
         <xpath expr="//page[last()]" position="after">
                 <page name="warranty" string="Product Warranty">
-                    <field name="product_warranty_ids">
-                        <tree>
+                    <field name="product_warranty_ids" >
+                        <tree create="false">
                         <field name="customer"/>
                         <field name="order_no"/>
                         <field name="start_date"/>
@@ -28,7 +28,7 @@
         <xpath expr="//page[last()]" position="after">
                 <page name="warranty" string="Product Warranty">
                     <field name="product_warranty_ids">
-                        <tree>
+                        <tree create="false">
                         <field name="customer"/>
                         <field name="order_no"/>
                         <field name="start_date"/>

@@ -16,6 +16,7 @@ class ProductWarranty(models.Model):
         selection=[
             ('active', "Active"),
             ('expired', "Expired"),
+            ('cancelled','Cancelled')
         ],
         string="Status",
         store=True)

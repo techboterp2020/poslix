@@ -33,6 +33,7 @@ class SaleOrderCustom(models.Model):
     def action_confirm(self):
         for rec in self.order_line:
             if rec.warranty:
+                qty = int(rec.product_uom_qty)
                 customer = self.partner_id.id
                 product_id = rec.product_id.id
                 prod_id = rec.product_id.product_tmpl_id.id
@@ -40,13 +41,14 @@ class SaleOrderCustom(models.Model):
                 start_date = self.warranty_start_date
                 end_date = rec.warranty_end_date
                 status = 'active'
-                self.env['product.warranty'].create({
-                    'product_id': product_id,
-                    'prod_id'  : prod_id,
-                    'customer': customer,
-                    'order_no': order_no,
-                    'start_date': start_date,
-                    'end_date': end_date,
-                    'status': status
-                })
+                for i in range(qty):
+                    self.env['product.warranty'].create({
+                        'product_id': product_id,
+                        'prod_id'  : prod_id,
+                        'customer': customer,
+                        'order_no': order_no,
+                        'start_date': start_date,
+                        'end_date': end_date,
+                        'status': status
+                    })
         return super(SaleOrderCustom, self).action_confirm()
