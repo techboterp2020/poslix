@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+              <report
+                  id="delivery_slip_new"
+                  string="Poslix Delivery Slip"
+                  model="stock.picking"
+                  report_type="qweb-pdf"
+                  name="techbot_report_customisation.delivery_slip_new_print"
+                  file="techbot_report_customisation.delivery_slip_new_print"
+          />
+
+</odoo>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_invoice_document_inherited" inherit_id="account.report_invoice_document">
+        <xpath expr="//table//tbody[@class='invoice_tbody']//t[1]" position="before">
+            <t t-set="sub_total_amount" t-value="0"/>
+            <t t-set="discount_total" t-value="0"/>
+        </xpath>
+        <xpath expr="//table/tbody[@class='invoice_tbody']/t[@t-foreach='lines']" position="inside">
+            <t t-if="line.product_id.discount_product">
+                <t t-set="discount_total" t-value="discount_total+line.price_subtotal"/>
+           </t>
+           <t t-if="not line.product_id.discount_product">
+                <t t-set="sub_total_amount" t-value="sub_total_amount+line.price_subtotal"/>
+           </t>
+         </xpath>
+            <xpath expr="//table/tbody[@class='invoice_tbody']/t[@t-foreach='lines']/tr" position="attributes">
+            <attribute name="t-if">not line.product_id.discount_product</attribute>
+        </xpath>
+
+    </template>
+</odoo>

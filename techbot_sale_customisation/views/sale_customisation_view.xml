@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="sale_order_view_inherit">
+            <field name="name">sale.order.view.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="concerned_person_id" />
+<!--                    <field name="prepared_signed_by_id" />-->
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

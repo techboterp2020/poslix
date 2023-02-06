@@ -1,0 +1,37 @@
+<odoo>
+    <data>
+        <record id="new_validate_button_validate" model="ir.ui.view">
+            <field name="name">new.validate.button</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='button_validate']" position="after">
+                    <button name="button_to_validate" class="oe_highlight"
+                            string="validate"
+                            type="object" attrs="{'invisible': ['|',('check', '=', True),('state', 'in', ('draft','done'))]}"/>
+                </xpath>
+
+                <xpath expr="//button[@name='button_validate'][1]" position="replace">
+                    <button name="button_validate"
+                        attrs="{'invisible': ['|', '|',('state', 'in', ('waiting','confirmed')), ('show_validate', '=', False),('check', '=', False)]}"
+                        string="Validate"
+                        type="object"
+                        class="oe_highlight"
+                        groups="stock.group_stock_user"/>
+                </xpath>
+
+                <xpath expr="//button[@name='button_validate'][2]" position="replace">
+                    <button name="button_validate"
+                        attrs="{'invisible': ['|','|',('state', 'not in', ('waiting', 'confirmed')), ('show_validate', '=', False),('check', '=', False)]}"
+                        string="Validate"
+                        type="object"
+                        groups="stock.group_stock_user"
+                        class="o_btn_validate"/>
+                 </xpath>
+                <xpath expr="//field[@name='picking_type_id']" position='after'>
+                    <field name="check" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_invoice_document_gcc_inv_inherited" inherit_id="l10n_gcc_invoice.arabic_english_invoice">
+        <xpath expr="//div[@name='origin']" position="after">
+            <div class="row" t-if="o.concerned_person_id" name="concerned_person">
+                <div class="col-2">
+                    <strong style="white-space:nowrap">Concerned Person:
+                    </strong>
+                </div>
+                <div class="col-2">
+                    <span t-field="o.concerned_person_id"/>
+                </div>
+                <div class="col-2 text-end">
+                    <strong style="white-space:nowrap">:
+                        المصدر
+                    </strong>
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[@name='th_description']" position="before">
+            <th name="th_sl_no" class="text-start">
+                <span>
+                    Sl No.
+                </span>
+                <br/>
+                <span>
+                    رقم سري
+                </span>
+            </th>
+        </xpath>
+        <xpath expr="//table[@name='invoice_line_table']/tbody/t[@t-foreach='lines']" position="before">
+            <t t-set="sl_no" t-value="1"/>
+        </xpath>
+        <xpath expr="//table[@name='invoice_line_table']/tbody/t[@t-foreach='lines']" position="inside">
+            <t t-if="not line.product_id.discount_product">
+                <t t-set="sl_no" t-value="sl_no+1"/>
+            </t>
+        </xpath>
+        <xpath expr="//table[@name='invoice_line_table']/tbody/t[@t-foreach='lines']/tr/t//td[@name='account_invoice_line_name']" position="before">
+            <td name="account_sl_no">
+                <span t-esc="sl_no"/>
+            </td>
+        </xpath>
+
+        <xpath expr="//p[@name='incoterm']" position="after">
+                <div class="col-12" style="padding-top:150px;">
+                    <table width="100%" style="border-style:hidden;">
+                        <tr>
+                            <td style="float:left;width:200px;text-align:center;border-top: 1px dotted black;border-bottom: hidden;border-right: hidden;border-left:hidden;background-color:white;font-size:12px">
+                                Receiver's Signature
+                            </td>
+                            <td style="float:right;width:75%;text-align:center;border: hidden;font-size:12px;padding-left:240px">
+                                For
+                                <span t-field="o.company_id"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </xpath>
+
+
+    </template>
+</odoo>

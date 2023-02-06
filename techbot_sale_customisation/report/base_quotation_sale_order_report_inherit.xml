@@ -1,0 +1,53 @@
+<odoo>
+    <data>
+        <template id="report_saleorder_document_inherited" inherit_id="sale.report_saleorder_document">
+            <!--            <xpath expr="//div[1]/table[@class='table table-sm o_main_table mt-4']" position="replace">-->
+            <xpath expr="//div[1]/table/thead/tr/th[@name='th_description']" position="before">
+                <th name="th_sl_no" class="text-start">Sl No.</th>
+            </xpath>
+
+            <xpath expr="//div[1]/table/thead/tr/th[@name='th_description']" position="before">
+                <th name="th_image" class="text-start">Image</th>
+            </xpath>
+
+            <xpath expr="//table/tbody/t[@t-foreach='lines_to_report']" position="before">
+                <t t-set="sl_no" t-value="1"/>
+            </xpath>
+
+            <xpath expr="//table/tbody/t[@t-foreach='lines_to_report']" position="inside">
+                <t t-if="not line.product_id.discount_product">
+                <t t-set="sl_no" t-value="sl_no+1"/>
+                </t>
+            </xpath>
+
+            <xpath expr="//table/tbody/t[@t-foreach='lines_to_report']/tr/t/td[@name='td_name']" position="before">
+                <td name="account_sl_no">
+                    <span t-esc="sl_no"/>
+                </td>
+            </xpath>
+
+            <xpath expr="//table/tbody/t[@t-foreach='lines_to_report']/tr/t/td[@name='td_name']" position="before">
+                <td name="td_image" style="width:70px; height:70px;">
+<!--                    <img t-if="line.product_id.image_1920" t-att-src="image_data_uri(line.product_id.image_1920)"/>-->
+                    <span t-if="line.product_id.image_1920" t-field="line.product_id.image_1920" t-options='{"widget": "image"}'/>
+                </td>
+            </xpath>
+
+            <xpath expr="//p[@id='fiscal_position_remark']" position="after">
+                <div  class="col-12" style="padding-top:150px;" >
+                <table width="100%" style="border-style:hidden;">
+                    <tr>
+                        <td style="float:left;width:200px;text-align:center;border-top: 1px dotted black;border-bottom: hidden;border-right: hidden;border-left:hidden;background-color:white;font-size:12px">
+                            Receiver's Signature
+                        </td>
+                        <td style="float:right;width:75%;text-align:center;border: hidden;font-size:12px;padding-left:240px">
+                            For
+                                <span t-field="doc.company_id"/>
+                        </td>
+                    </tr>
+                </table>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</odoo>
