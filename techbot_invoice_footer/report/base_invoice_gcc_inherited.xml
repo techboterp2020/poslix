@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_invoice_document_gcc_inv_inherited" inherit_id="l10n_gcc_invoice.arabic_english_invoice">
+        <xpath expr="//p[@name='incoterm']" position="after">
+            <div class="col-12" style="padding-top:40px;">
+                <table width="100%" style="border-style:hidden;">
+                    <tr>
+                        <td style="float:left;width:200px;text-align:center;border-bottom: hidden;border-right: hidden;border-left:hidden;background-color:white;font-size:12px">
+                            Receiver's Signature
+                        </td>
+                        <td style="float:right;width:75%;text-align:center;border: hidden;font-size:12px;padding-left:240px">
+                            For
+                            <span t-field="o.company_id"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>
